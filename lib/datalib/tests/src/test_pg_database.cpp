@@ -91,7 +91,7 @@ TEST(DATABASE, ADD_USERS)
     std::vector<int> ids = { 1, 2 };
     std::vector<User> getting_users = get_users(ids);
     
-    for (auto user: getting_users)
+    for (int i = 0; i < users.size(); i++)
     {
 		EXPECT_EQ(getting_users[i].get_full_name(), users[i].get_full_name());
 		EXPECT_EQ(getting_users[i].get_address(), users[i].get_address());
@@ -166,15 +166,18 @@ TEST(DATABASE, ADD_FLATS)
     std::vector<int> likes_1 = { 1, 2, 3 };
     Flat flat_1(price_1, city_1, address_1, rooms_1, square_1, floor_1, photo_urls_1, nearest_metro_1, likes_1);
 
-    
-    std::string name_2 = "Ivan";
-    std::string surname_2 = "Ivanov";
-    std::string address_2 = "BMSTU, not VK education";
-    int age_2 = 30;
+        
+    int price_2 = 8000;
     std::string city_2 = "Moscow";
-    std::vector<int> likes_2 = { 6, 2, 3 };
-    User user_2(name_2, surname_2, address_2, age_2, city_2, likes_2);
-    
+    std::string address_2 = "BMSTU, not VK education";
+    int rooms_2 = 100;
+    int square_2 = 800;
+    int floor_2 = 7;
+    std::vector<std::string> photo_urls_2 = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
+    std::map<std::string, int> nearest_metro_2 =  { {"some_station_1", 200}, {"some_station_2", 300}, }
+    std::vector<int> likes_2 = { 1, 9, 3 };
+    Flat flat_2(price_2, city_2, address_2, rooms_2, square_2, floor_2, photo_urls_2, nearest_metro_2, likes_2);
+
     std::vector<Flat> flats = { flat_1, flat_2 };
     
     EXPECT_TRUE(db.add_flats(flats) == true);
@@ -182,7 +185,7 @@ TEST(DATABASE, ADD_FLATS)
     std::vector<int> ids = { 1, 2 };
     std::vector<Flat> getting_flats = get_flats(ids);
     
-    for (int i = 0; i < getting_flats.size(); i++)
+    for (int i = 0; i < flats.size(); i++)
     {
 		EXPECT_EQ(getting_flats[i].get_price(), flats[i].get_price());
 		EXPECT_EQ(getting_flats[i].get_city(), flats[i].get_city());
