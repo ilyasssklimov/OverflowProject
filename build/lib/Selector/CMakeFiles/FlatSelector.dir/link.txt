@@ -1,2 +1,0 @@
-/usr/bin/ar qc libFlatSelector.a  CMakeFiles/FlatSelector.dir/src/FlatSelector.cpp.o
-/usr/bin/ranlib libFlatSelector.a
