@@ -1,0 +1,10 @@
+/home/justcrab/vscode/OverflowProject/build/CMakeFiles/rebuild_cache.dir
+/home/justcrab/vscode/OverflowProject/build/CMakeFiles/edit_cache.dir
+/home/justcrab/vscode/OverflowProject/build/CMakeFiles/test.dir
+/home/justcrab/vscode/OverflowProject/build/CMakeFiles/Selector.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/rebuild_cache.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/FlatSelector.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/GetTravelTime.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/edit_cache.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/test.dir
+/home/justcrab/vscode/OverflowProject/build/lib/Selector/CMakeFiles/ParseJson.dir
