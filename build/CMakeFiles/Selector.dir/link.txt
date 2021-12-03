@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Selector.dir/main.cpp.o  -o Selector  lib/Selector/libFlatSelector.a lib/Selector/libGetTravelTime.a /usr/lib/x86_64-linux-gnu/libcurl.so lib/Selector/libParseJson.a 

@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../lib/Selector/include/ParseJson.h
+vector
+-
+string
+-
+
+/home/justcrab/vscode/OverflowProject/lib/Selector/src/ParseJson.cpp
+rapidjson/document.h
+/home/justcrab/vscode/OverflowProject/lib/Selector/src/rapidjson/document.h
+rapidjson/writer.h
+/home/justcrab/vscode/OverflowProject/lib/Selector/src/rapidjson/writer.h
+rapidjson/stringbuffer.h
+/home/justcrab/vscode/OverflowProject/lib/Selector/src/rapidjson/stringbuffer.h
+iostream
+-
+ParseJson.h
+/home/justcrab/vscode/OverflowProject/lib/Selector/src/ParseJson.h
+

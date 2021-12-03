@@ -1,0 +1,2 @@
+/usr/bin/ar qc libParseJson.a  CMakeFiles/ParseJson.dir/src/ParseJson.cpp.o
+/usr/bin/ranlib libParseJson.a
