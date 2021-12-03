@@ -1,2 +1,0 @@
-/usr/bin/ar qc libGetTravelTime.a  CMakeFiles/GetTravelTime.dir/src/GetTravelTime.cpp.o
-/usr/bin/ranlib libGetTravelTime.a
