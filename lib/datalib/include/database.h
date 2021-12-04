@@ -10,7 +10,7 @@
 
 class DataBase
 {
-publicL
+public:
     virtual bool connect_db() = 0;
     virtual ~DataBase() = default;
     
@@ -23,6 +23,9 @@ publicL
     virtual std::vector<User> get_users(std::vector<int> ids);
     virtual Flat get_flat(int id);
     virtual std::vector<Flat> get_flats(std::vector<int> ids);
+    
+    virtual std::vector<Flat> get_random_flats(int num);
+    virtual std::vector<Flat> get_all_flats();
 };
 
 
