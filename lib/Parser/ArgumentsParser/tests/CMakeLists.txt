@@ -1,4 +1,0 @@
-add_executable(Parser_Apartments_test src/ArgumentsParser_test.cpp)
-
-target_link_libraries(Parser_Apartments_test CURL::libcurl rapidjson ArgumentsParser GTest::GTest)
-add_test(NAME Parser_Apartments_test COMMAND Parser_Apartments_test)
