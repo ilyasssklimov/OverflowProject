@@ -9,10 +9,10 @@ namespace Settings {
     /*
     Настройки статических файлов.
     */
-    string Static::static_dir = "static";
+    //string Static::static_dir = "static";
 
     /*
     Настройки шаблонов.
     */
-    string Templates::templates_dir = "templates";
+    //string Templates::templates_dir = "templates";
 }
