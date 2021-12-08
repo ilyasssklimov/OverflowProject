@@ -6,8 +6,8 @@ add_library(datalib src/sqlite_database.cpp
 target_include_directories(datalib PUBLIC include)
 target_include_directories(datalib PUBLIC db)
 
-target_include_directories(datalib PUBLIC C:/sqlite)
-target_link_directories(datalib PUBLIC C:/sqlite)
+find_package(SQLite3 REQUIRED)
+
 target_link_libraries(datalib sqlite3)
 
 
