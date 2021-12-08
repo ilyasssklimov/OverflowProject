@@ -1,3 +1,6 @@
+#ifndef __GETTRAVELTIME_H__
+#define __GETTRAVELTIME_H__
+
 #include <vector>
 #include <string>
 #include <curl/curl.h>
@@ -10,3 +13,5 @@ private:
     std::string get_encoded_request(CURL *curl, std::vector<std::string> origins, std::string dest);
     std::string send_request(std::vector<std::string> origins, std::string dest);
 };
+
+#endif

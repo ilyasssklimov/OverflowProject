@@ -1,27 +1,16 @@
 #include "FlatSelector.h"
 #include "GetTravelTime.h"
 
-
-
-
-std::vector<Flat> select_rand_flats(int count){
-    std::vector<Flat> result;
-
-    result.push_back(Flat(std::string("Москва"), std::string("Бауманская ул., 33/2 строение 8")));
-    result.push_back(Flat(std::string("Москва"), std::string("Краснопрудная ул., 26")));
-    result.push_back(Flat(std::string("Москва"), std::string("ул. 2-я Рыбинская")));
-    result.push_back(Flat(std::string("Москва"), std::string("Бутырская ул., 79")));
-    result.push_back(Flat(std::string("Москва"), std::string("ул. Линии Октябрьской Железной Дороги, 2с1")));
-
-    return result;
+FlatSelector::FlatSelector(){
+    std::string db_name = "overflow.db";
+    db = new SQLiteDataBase(db_name);
 }
-
 
 std::vector<std::string> FlatSelector::get_addr_vect(std::vector<Flat> flats){
     std::vector<std::string> result;
 
     for(Flat &sel_flat : flats){
-        result.push_back(sel_flat.get_city() + ", " + sel_flat.get_address());
+        result.push_back(sel_flat.get_address());
     }
 
     return result;
@@ -41,10 +30,20 @@ std::vector<int> FlatSelector::get_travel_time(std::vector<std::string> origins,
 std::vector<FlatAndTravelTime> FlatSelector::get_by_travel_time(int count, std::string dest){
     std::vector<FlatAndTravelTime> result;
 
-    std::vector<Flat> origins = select_rand_flats(count);
-     
+    std::vector<Flat> origins = db->get_random_flats(count);
+    
+    if(origins.empty()){
+        fprintf(stderr, "FlatSelector::get_by_travel_time - db->get_random_flats empty\n");
+        return {};
+    }
+
     std::vector<std::string> origins_addr = get_addr_vect(origins);
     std::vector<int> travel_time = get_travel_time(origins_addr, dest);
+
+    if(travel_time.empty()){
+        fprintf(stderr, "FlatSelector::get_by_travel_time - travel_time empty\n");
+        return {};
+    }
 
     int length = origins_addr.size();
     for(int i = 0; i < length; i++){

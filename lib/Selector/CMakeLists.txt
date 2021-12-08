@@ -11,5 +11,4 @@ target_include_directories(GetTravelTime PUBLIC include)
 target_include_directories(FlatSelector PUBLIC include)
 
 target_link_libraries(GetTravelTime CURL::libcurl ParseJson)
-target_link_libraries(FlatSelector GetTravelTime )
-
+target_link_libraries(FlatSelector GetTravelTime datalib)
