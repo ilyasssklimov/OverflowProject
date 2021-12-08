@@ -51,7 +51,7 @@ std::string GetTravelTime::send_request(std::vector<std::string> origins, std::s
  	curl_easy_cleanup(curl);
 
 	if(res != CURLE_OK){
-		json = "err";
+		json = "";
 	}
 
 	 return json;
@@ -62,7 +62,19 @@ std::vector<int> GetTravelTime::make_request(std::vector<std::string> origins, s
 	ParseJson parser = ParseJson();
 
 	std::string json = send_request(origins, dest);
-	std::vector<int> time = parser.parse_json(json);
+	
+    if(json.empty()){
+        fprintf(stderr, "GetTravelTime::make_request - api err\n");
+        return {};
+    }
+	std::vector<int> time = {};
+	try{
+		time = parser.parse_json(json);
+	}
+	catch(...){
+        fprintf(stderr, "GetTravelTime::make_request - parsing error\n");
+        return {};
+    }
 
     return time;
 }
