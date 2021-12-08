@@ -1,22 +1,20 @@
-#ifndef __FLAT_H__
-#define __FLAT_H__
+#ifndef __FLAT_PARAMS_H__
+#define __FLAT_PARAMS_H__
 
 
 #include <iostream>
 #include <string>
-#include "flat_params.h"
 
 
 using std::string;
 
-
-class Flat
-{
+class FlatParams {
 public:
-    explicit Flat(FlatParams &flat_params): flat_params(flat_params) {};
-    ~Flat() = default;
-
-    [[nodiscard]] FlatParams get_params() const;
+    FlatParams(const string &title, int price, int price_per_area=0,
+               const string &address="", const string &description="",
+               const string &station="", const string &property="", int floor=0,
+               int floor_max=0, const string &photo="");
+    ~FlatParams() = default;
 
     [[nodiscard]] string get_title() const;
     [[nodiscard]] int get_price() const;
@@ -41,8 +39,17 @@ public:
     void set_photo(string &new_photo);
 
 private:
-    FlatParams flat_params;
+    string title;
+    int price;
+    int price_per_area;
+    string address;
+    string description;
+    string station;
+    std::string property;
+    int floor;
+    int floor_max;
+    string photo;
 };
 
 
-#endif  // __FLAT_H__
+#endif  // __FLAT_PARAMS_H__
