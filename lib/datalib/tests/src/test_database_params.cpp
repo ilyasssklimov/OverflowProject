@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    #include "database_params.h"
+    #include "../../../../extra/database_params.h"
 }
 
 
