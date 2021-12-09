@@ -3,6 +3,7 @@
 
 #include "Selector.h"
 
+#include <memory>
 
 class FlatAndTravelTime{
 public:

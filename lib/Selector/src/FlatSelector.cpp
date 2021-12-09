@@ -1,6 +1,8 @@
 #include "FlatSelector.h"
 #include "GetTravelTime.h"
 
+#include <memory>
+
 FlatSelector::FlatSelector(){
     std::string db_name = "overflow.db";
     db = new SQLiteDataBase(db_name);
@@ -27,10 +29,12 @@ std::vector<int> FlatSelector::get_travel_time(std::vector<std::string> origins,
     return result;
 }
 
+static std::vector<Flat> origins;
+
 std::vector<FlatAndTravelTime> FlatSelector::get_by_travel_time(int count, std::string dest){
     std::vector<FlatAndTravelTime> result;
 
-    std::vector<Flat> origins = db->get_random_flats(count);
+    origins = db->get_random_flats(count);
     
     if(origins.empty()){
         fprintf(stderr, "FlatSelector::get_by_travel_time - db->get_random_flats empty\n");
