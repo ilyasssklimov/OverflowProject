@@ -5,21 +5,26 @@
 #include "rapidjson/stringbuffer.h"
 #include <vector>
 
-TEST(Parser_Apartments_all, Parser_Apartments_URLS_to_str){
+TEST(ArgumentsParser_all, ArgumentsParser_URLS_to_str){
     ArgumentsParser *apartments;
-    apartments = new ArgumentsParser("https://www.domofond.ru", "arenda-kvartiry-moskva-c3584?RentalRate=Month&Page=2", 10000);
+    std::string base = "https://www.domofond.ru?";
+    std::string get = "Page=";
+    apartments = new ArgumentsParser(base, get, 1);
     apartments->URLS_to_str();
-    apartments->str_to_json();
-    apartments->json_to_db();
+    apartments->str_to_json("{\"itemsState\":(.*)}}");
+    std::string name = "overflow.db";
+    apartments->json_to_db(name);
     //проверка на наличе полей в бд. Пока не понятно как тестить
 }
 
-TEST(Parser_Apartments_all, Parser_Apartments_URLS_to_str_null){
+TEST(ArgumentsParser_all, ArgumentsParser_URLS_to_str_null){
     ArgumentsParser *apartments;
-    apartments = new ArgumentsParser("", "", 1000);
-    apartments->URLS_to_str();
-    apartments->str_to_json();
-    apartments->json_to_db();
+    std::string base = "https://www.domofond.ru?";
+    std::string get = "Page=";
+    apartments = new ArgumentsParser(base, get, 1);
+    apartments->str_to_json("{\"itemsState\":(.*)}}");
+    std::string name = "overflow.db";
+    apartments->json_to_db(name);
     EXPECT_EQ(apartments, NULL);
 }
 

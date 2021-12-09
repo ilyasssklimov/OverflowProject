@@ -17,10 +17,6 @@ find_package(CURL)
 find_package(RapidJSON)
 find_package(Boost)
 
-add_subdirectory(lib/Parser/lib/JsonReader)
-add_subdirectory(lib/Parser/lib/UrlsReader)
-add_subdirectory(lib/Parser/lib/ArgumentsParser)
-add_subdirectory(lib/datalib)
-
-#add_executable(Parser ../../src/main.cpp)
-#target_link_libraries(Parser CURL::libcurl rapidjson lib/ArgumentsParser ../datalib)
+add_subdirectory(lib/JsonReader)
+add_subdirectory(lib/UrlsReader)
+add_subdirectory(lib/ArgumentsParser)

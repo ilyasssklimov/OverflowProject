@@ -1,0 +1,5 @@
+# ninja log v5
+1	8	1639059428093064709	lib/UrlsReader/libUrlsReader.a	cf09bb1511573c95
+1	419	1639059422757140626	lib/UrlsReader/CMakeFiles/UrlsReader.dir/src/UrlsReader.cpp.o	29dcccbb5c8fedf1
+985	1205	1639059429289047692	lib/UrlsReader/tests/UrlsReader_test	7fc865375ec8d542
+1	984	1639059429069050823	lib/UrlsReader/tests/CMakeFiles/UrlsReader_test.dir/src/UrlsReader_test.cpp.o	4b51beaca53a28fe

@@ -1,0 +1,210 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						3,
+						5
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "lib/JsonReader",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-lib.JsonReader-Debug-1097c26ab9006ecd3ac9.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib/JsonReader",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "lib/JsonReader/tests",
+					"jsonFile" : "directory-lib.JsonReader.tests-Debug-de3e553ebf1b3bdbe55f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 0,
+					"source" : "lib/JsonReader/tests",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "lib/UrlsReader",
+					"childIndexes" : 
+					[
+						4
+					],
+					"jsonFile" : "directory-lib.UrlsReader-Debug-31070f93d61a1695db9a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib/UrlsReader",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "lib/UrlsReader/tests",
+					"jsonFile" : "directory-lib.UrlsReader.tests-Debug-5f589cfc630e9402b70c.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 3,
+					"projectIndex" : 0,
+					"source" : "lib/UrlsReader/tests",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "lib/ArgumentsParser",
+					"childIndexes" : 
+					[
+						6
+					],
+					"jsonFile" : "directory-lib.ArgumentsParser-Debug-31f396c7bed290aefdc1.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "lib/ArgumentsParser",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "lib/ArgumentsParser/tests",
+					"jsonFile" : "directory-lib.ArgumentsParser.tests-Debug-be0ed2c6ec9293798230.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"parentIndex" : 5,
+					"projectIndex" : 0,
+					"source" : "lib/ArgumentsParser/tests",
+					"targetIndexes" : 
+					[
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"name" : "Parser",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 5,
+					"id" : "ArgumentsParser::@a3e46b15c8229f18388b",
+					"jsonFile" : "target-ArgumentsParser-Debug-e42e43d15cb9a22c049b.json",
+					"name" : "ArgumentsParser",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "JsonReader::@d9d2c9c5370be134008c",
+					"jsonFile" : "target-JsonReader-Debug-aa5570e9552880e936e4.json",
+					"name" : "JsonReader",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "JsonReader_test::@a6cd3e298a6b767fea4b",
+					"jsonFile" : "target-JsonReader_test-Debug-fe8fd2e34f80f9324971.json",
+					"name" : "JsonReader_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "Parser_Apartments_test::@5504a95e7c4f05baf2c9",
+					"jsonFile" : "target-Parser_Apartments_test-Debug-0ebf199e971c723c7321.json",
+					"name" : "Parser_Apartments_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "UrlsReader::@db67d242feb286243f99",
+					"jsonFile" : "target-UrlsReader-Debug-ea09fc8a06c02f3d0be1.json",
+					"name" : "UrlsReader",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "UrlsReader_test::@90cc53c80c63b683daf5",
+					"jsonFile" : "target-UrlsReader_test-Debug-282747b4177f22f4d285.json",
+					"name" : "UrlsReader_test",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/aleksandr/Рабочий стол/1233/OverflowProject/lib/Parser/cmake-build-debug",
+		"source" : "/home/aleksandr/Рабочий стол/1233/OverflowProject/lib/Parser"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
