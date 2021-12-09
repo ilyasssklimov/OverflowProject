@@ -3,22 +3,31 @@
 /*
 Отображение информационного текста о Flat.
 */
-std::string FlatWrapper::info() {
+std::unique_ptr<Wt::WTemplate> FlatWrapper::info() {
   std::stringstream ss;
   Flat *f = flat.get_flat();
-  int t = flat.get_travel_time();
-  ss << f->get_title() << std::endl << std::endl << f->get_description() << std::endl << std::endl <<
-    "Цена: " << f->get_price();
-  std::string out = f->get_title();
-  std::cout << out << std::endl;
-  return out;
+  Wt::WString st = Wt::WString::tr("info");
+  std::unique_ptr<Wt::WTemplate> t = std::make_unique<Wt::WTemplate>(st);
+  t->bindString("title", Wt::WString(f->get_title()));
+  t->bindString("address", Wt::WString(f->get_address()));
+  t->bindString("description", Wt::WString(std::regex_replace(f->get_description(), std::regex("\\<br>"), "\n")));
+  t->bindString("floor", Wt::WString(std::to_string(f->get_floor())));
+  t->bindString("floor_max", Wt::WString(std::to_string(f->get_floor_max())));
+  t->bindString("photo", Wt::WString(f->get_photo()));
+  t->bindString("price", Wt::WString(std::to_string(f->get_price())));
+  t->bindString("price_per_area", Wt::WString(std::to_string(f->get_price_per_area())));
+  t->bindString("property", Wt::WString(f->get_property()));
+  t->bindString("station", Wt::WString(f->get_station()));
+  t->bindString("time", Wt::WString(std::to_string(flat.get_travel_time())));
+  return t;
 }
 
 OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env)
 {
-  auto theme = std::make_shared<Wt::WBootstrapTheme>();
-  theme->setVersion(Wt::BootstrapVersion::v3);
-  setTheme(theme);
+  //auto theme = std::make_shared<Wt::WBootstrapTheme>();
+  //theme->setVersion(Wt::BootstrapVersion::v3);
+  //setTheme(theme);
+  messageResourceBundle().use("./info"); // FlatWrapper info template
   useStyleSheet(Wt::WLink("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"));
   require("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js");
   setTitle(Settings::General::site_title);
@@ -33,14 +42,10 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
   */
   std::function<std::vector<FlatWrapper>(Wt::WString)> _get_data = [](Wt::WString input) {
     std::vector<FlatAndTravelTime> res = FlatSelector().get_by_travel_time(10, input.toUTF8());
-    if (res.size() == 0) {
-      std::cout << "Ошибка на стороне FlatSelector: пустой массив." << std::endl;
-    }
     std::vector<FlatWrapper> out = {};
     for (auto flat: res) {
       out.push_back(FlatWrapper(flat));
     }
-    std::cout << out.size() << std::endl;
     return out;
   };
   searchbox = root()->addWidget(std::make_unique<SearchBox<FlatWrapper>>(_get_data));
@@ -65,7 +70,6 @@ int run_server(int argc, char **argv)
      * the user has permission to start a new application
      */
     auto app = std::make_unique<OverflowProject>(env);
-    app->setLocale(Wt::WLocale("ru-RU"));
     return app;
   });
 }

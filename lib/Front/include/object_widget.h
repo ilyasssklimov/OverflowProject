@@ -20,7 +20,7 @@
 class Object {
 public:
     Object() {};
-    virtual std::string info() {return "";};
+    virtual std::unique_ptr<Wt::WTemplate> info() {return std::unique_ptr<Wt::WTemplate>();};
 };
 
 template <typename T>
@@ -32,13 +32,12 @@ public:
         setContentAlignment(Wt::AlignmentFlag::Center);
         //decorationStyle().setBackgroundColor(Wt::WColor(226, 226, 226));
         auto layout = setLayout(std::make_unique<Wt::WVBoxLayout>());
-        addStyleClass("row rounded-3 bg-secondary");
-        Wt::WString info = Wt::WString(obj.info());
-        info_ = layout->addWidget(std::make_unique<Wt::WText>(info));
+        addStyleClass("row rounded-3 bg-primary border border-white border-3");
+        info_ = layout->addWidget(obj.info());
     }
 public:
     Wt::WPushButton  *show_; // кнопка - показать объект
 private:
-    Wt::WText        *info_; // вся информация об объекте
+    Wt::WTemplate    *info_; // вся информация об объекте
 };
 
