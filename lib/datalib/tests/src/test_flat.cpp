@@ -1,162 +1,111 @@
 #include <gtest/gtest.h>
+#include "flat.h"
 
-extern "C"
+
+Flat static generate_flat() {
+    FlatParams flat_params = FlatParams("", 0);
+    Flat flat = Flat(flat_params);
+
+    return flat;
+}
+
+
+TEST(FLAT_TEST, TITLE)
 {
-    #include "flat.h"
+    std::string new_title = "new_title";
+    Flat flat = generate_flat();
+    flat.set_title(new_title);
+
+    EXPECT_EQ(new_title, flat.get_title());
 }
 
 
-TEST(FLAT_TEST, GET_PRICE)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    EXPECT_EQ(price, flat.get_price());   
+TEST(FLAT_TEST, PRICE)
+{
+    int new_price = 1000;
+    Flat flat = generate_flat();
+    flat.set_price(new_price);
+
+    EXPECT_EQ(new_price, flat.get_price());
 }
 
 
-TEST(FLAT_TEST, GET_CITY)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    EXPECT_EQ(city, flat.get_city());   
+TEST(FLAT_TEST, PRICE_PER_AREA)
+{
+    int new_price = 1000;
+    Flat flat = generate_flat();
+    flat.set_price_per_area(new_price);
+
+    EXPECT_EQ(new_price, flat.get_price_per_area());
 }
 
 
-TEST(FLAT_TEST, GET_ADDRESS)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    EXPECT_EQ(address, flat.get_address());   
+TEST(FLAT_TEST, ADDRESS)
+{
+    std::string new_address = "Moscow";
+    Flat flat = generate_flat();
+    flat.set_address(new_address);
+
+    EXPECT_EQ(new_address, flat.get_address());
 }
 
 
-TEST(FLAT_TEST, GET_ROOMS)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    EXPECT_EQ(rooms, flat.get_rooms());   
+TEST(FLAT_TEST, DESCRIPTION)
+{
+    std::string new_description = "It is description";
+    Flat flat = generate_flat();
+    flat.set_description(new_description);
+
+    EXPECT_EQ(new_description, flat.get_description());
 }
 
 
-TEST(FLAT_TEST, GET_SQUARE)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    EXPECT_EQ(square, flat.get_square());   
+TEST(FLAT_TEST, STATION)
+{
+    std::string new_station = "Izmaylovskaya";
+    Flat flat = generate_flat();
+    flat.set_station(new_station);
+
+    EXPECT_EQ(new_station, flat.get_station());
 }
 
 
-TEST(FLAT_TEST, GET_PHOTO_URLS)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    std::vector<std::string> getting_urls = flat.get_photo_urls());   
-    
-    EXPECT_EQ(photo_urls.size(), getting_urls.size());
-    for (int i = 0; i < photo_urls.size(); i++)
-        EXPECT_EQ(photo_urls[i], getting_urls[i]);
+TEST(FLAT_TEST, PROPERTY)
+{
+    std::string new_property = "Apartament";
+    Flat flat = generate_flat();
+    flat.set_property(new_property);
+
+    EXPECT_EQ(new_property, flat.get_property());
 }
 
 
-TEST(FLAT_TEST, GET_NEAREST_METRO)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    std::vector<std::string> getting_metro = flat.get_nearest_metro());   
-    
-    EXPECT_EQ(nearest_metro.size(), getting_metro.size());
-    for (auto& [key, value]: getting_metro)
-        EXPECT_EQ(nearest_metro[key], getting_metro[key]);
+TEST(FLAT_TEST, FLOOR)
+{
+    int new_floor = 10;
+    Flat flat = generate_flat();
+    flat.set_floor(new_floor);
+
+    EXPECT_EQ(new_floor, flat.get_floor());
 }
 
 
-TEST(FLAT_TEST, GET_LIKES)
-{    
-    int price = 1000;
-    std::string city = "Moscow";
-    std::string address = "BMSTU, VK education";
-    int rooms = 10;
-    int square = 900;
-    int floor = 3;
-    std::vector<std::string> photo_urls = { "https://someurl.ru/image/1", "https://someurl.ru/image/2" }; 
-    std::map<std::string, int> nearest_metro =  { {"some_station_1", 200}, {"some_station_2", 300}, }
-    std::vector<int> likes = { 1, 2, 3 };
-    
-    Flat flat(price, city, address, rooms, square, floor, photo_urls, nearest_metro, likes);
-    
-    std::vector<std::string> getting_likes = flat.get_likes());   
-    
-    EXPECT_EQ(likes.size(), getting_likes.size());
-    for (int i = 0; i < likes.size(); i++)
-        EXPECT_EQ(likes[i], getting_likes[i]);
+TEST(FLAT_TEST, FLOOR_MAX)
+{
+    int new_floor = 100;
+    Flat flat = generate_flat();
+    flat.set_floor_max(new_floor);
+
+    EXPECT_EQ(new_floor, flat.get_floor_max());
 }
+
+
+TEST(FLAT_TEST, PHOTO)
+{
+    std::string new_photo = "https://some.com/url/";
+    Flat flat = generate_flat();
+    flat.set_photo(new_photo);
+
+    EXPECT_EQ(new_photo, flat.get_photo());
+}
+
