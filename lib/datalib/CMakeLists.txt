@@ -4,12 +4,9 @@ add_library(datalib src/sqlite_database.cpp
                     src/flat.cpp)
 
 target_include_directories(datalib PUBLIC include)
-target_include_directories(datalib PUBLIC db)
 
 find_package(SQLite3 REQUIRED)
-
 target_link_libraries(datalib sqlite3)
-
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
