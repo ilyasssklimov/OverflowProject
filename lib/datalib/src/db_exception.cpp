@@ -14,4 +14,4 @@ BaseError::BaseError(const std::string &filename, const int line, const char *ti
 ConnectionError::ConnectionError(const std::string &filename, const int line,
                                  const char *time, const std::string &message):
         BaseError(filename, line, time,
-                  "Incorrect connection to database. Please check your db file: " + message) {};
+                  "Incorrect connection to database. Please check your db file: " + message) {}
