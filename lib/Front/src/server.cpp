@@ -13,11 +13,13 @@ private:
 */
 std::string FlatWrapper::info() {
   std::stringstream ss;
-  Flat f = flat.get_flat();
-  int t = flat.get_travel_time;
-  ss << f.get_title() << std::endl << std::endl << f.get_description() << std::endl << std::endl <<
-    "Цена: " << f.get_price();
-  return ss.str();
+  Flat *f = flat.get_flat();
+  int t = flat.get_travel_time();
+  ss << f->get_title() << std::endl << std::endl << f->get_description() << std::endl << std::endl <<
+    "Цена: " << f->get_price();
+  std::string out = ss.str();
+  std::cout << out << std::endl;
+  return out;
 }
 
 class OverflowProject : public Wt::WApplication
@@ -45,7 +47,15 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
     Получение данных от FlatSelector.
   */
   std::function<std::vector<FlatWrapper>(Wt::WString)> _get_data = [](Wt::WString input) {
-    return FlatSelector().get_by_travel_time(10, std::string(input));
+    std::vector<FlatAndTravelTime> res = FlatSelector().get_by_travel_time(10, input.toUTF8());
+    if (res.size() == 0) {
+      std::cout << "Ошибка на стороне FlatSelector: пустой массив." << std::endl;
+    }
+    std::vector<FlatWrapper> out = {};
+    for (auto flat: res) {
+      out.push_back(FlatWrapper(flat));
+    }
+    return out;
   };
   searchbox = root()->addWidget(std::make_unique<SearchBox<FlatWrapper>>(_get_data));
 }

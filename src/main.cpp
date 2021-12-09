@@ -1,11 +1,7 @@
-#include <iostream>
-#include "sqlite_database.h"
+#include "server.h"
 
 
-int main()
+int main(int argc, char** argv)
 {
-    std::string db_name = "overflow.db";
-    SQLiteDataBase db = SQLiteDataBase(db_name);
-
-    return 0;
+    return run_server(argc, argv);
 }
