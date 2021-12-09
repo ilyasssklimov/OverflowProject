@@ -32,7 +32,6 @@ class SearchBox: public Wt::WContainerWidget { // интерфейс поиск�
       //obj_container->hide();
     };
     std::function<std::vector<T>(Wt::WString)> get_data;
-  private:
     void showresults() {
       data = get_data(search_input->text());
       obj_container->clear();
@@ -45,6 +44,8 @@ class SearchBox: public Wt::WContainerWidget { // интерфейс поиск�
         is_shown = !obj_container->isHidden();
       }
     };
+    std::vector<T> data;
+  private:
     void collapse() {
         doJavaScript("var collapseElementList = [].slice.call(document.querySelectorAll('#obj_container'))\n"
     "var collapseList = collapseElementList.map(function (collapseEl) {\n"
@@ -53,6 +54,5 @@ class SearchBox: public Wt::WContainerWidget { // интерфейс поиск�
     }
     Wt::WLineEdit *search_input;
     bool is_shown;
-    std::vector<T> data;
     Wt::WContainerWidget *obj_container;
 };

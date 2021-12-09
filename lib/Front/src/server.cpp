@@ -1,13 +1,5 @@
 #include "server.h"
 
-class FlatWrapper: public Object {
-public:
-  FlatWrapper(FlatAndTravelTime _flat): flat(_flat) {};
-  std::string info();
-private:
-  FlatAndTravelTime flat;
-};
-
 /*
 Отображение информационного текста о Flat.
 */
@@ -21,13 +13,6 @@ std::string FlatWrapper::info() {
   std::cout << out << std::endl;
   return out;
 }
-
-class OverflowProject : public Wt::WApplication
-{
-public:
-  OverflowProject(const Wt::WEnvironment& env);
-  SearchBox<FlatWrapper> *searchbox;
-};
 
 OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env)
 {

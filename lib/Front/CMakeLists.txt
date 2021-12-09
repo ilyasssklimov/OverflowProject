@@ -7,6 +7,8 @@ set(CMAKE_CXX STANDARD 14)
 set(SOURCE_DIR src)
 set(HEADERS_DIR include)
 
+set(TESTS 1)
+
 add_compile_options(-Wall -Wextra -pedantic)
 
 if (CMAKE_BUILD_TYPE=Release)
