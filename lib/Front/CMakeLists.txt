@@ -29,7 +29,7 @@ endif()
 add_library(Front ${SOURCE_DIR}/server.cpp ${SOURCE_DIR}/settings.cpp)
 target_include_directories(Front PUBLIC ${HEADERS_DIR})
 
-target_link_libraries(Front FlatSelector)
+target_link_libraries(Front FlatSelector ArgumentsParser)
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)
     message("Использую WebToolkit [Release].")
