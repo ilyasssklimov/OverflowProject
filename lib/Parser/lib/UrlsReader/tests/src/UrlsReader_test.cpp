@@ -24,7 +24,6 @@ TEST(UrlsReader_parser_urls, UrlsReader_parser_urls) {
     readUrls->set_urls(url, base, 1);
     std::vector<std::string> *context = readUrls->parser_urls();
     EXPECT_TRUE(context->empty() == false);
-    delete readUrls;
 }
 
 TEST(UrlsReader_parser_urls, UrlsReader_parser_urls_error) {
@@ -33,14 +32,12 @@ TEST(UrlsReader_parser_urls, UrlsReader_parser_urls_error) {
     readUrls->set_urls(url, base, 1);
     std::vector<std::string> *context = readUrls->parser_urls();
     EXPECT_TRUE(context->at(0) == "FAIL_READ");
-    delete readUrls;
 }
 
 TEST(UrlsReader_parser_urls, UrlsReader_parser_urls_null) {
     auto *readUrls = new UrlsReader;
     std::vector<std::string> *context = readUrls->parser_urls();
     EXPECT_TRUE(context == nullptr);
-    delete readUrls;
 }
 
 int main(int argc, char **argv) {

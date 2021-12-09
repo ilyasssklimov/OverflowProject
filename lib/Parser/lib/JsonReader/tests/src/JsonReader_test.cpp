@@ -53,22 +53,23 @@ TEST(Read_Json_strs_to_json, Read_Json_strs_to_json) {
     std::string json_otvet = "{\"hello\": \"world\","
                              " \"t\": true,"
                              " \"f\": false,"
-                             " \"n\": \"null\","
-                             " \"i\": \"123\","
+                             " \"i\": 123,"
                              " \"pi\": 3.1416,"
                              " \"a\": [1, 2, 3, 4]}";
     std::vector<std::string> vector_json;
-    vector_json.push_back(json);
+    vector_json.push_back(json_otvet);
     auto *jsonReader = new JsonReader(&vector_json);
-    std::vector<std::string> *a = jsonReader->find_json("{\"hello\"(.*)]}");
-    jsonReader->strs_to_json()
-    EXPECT_TRUE(a->at(0) == json_otvet);
-}
-
-TEST(Read_Json_strs_to_json, Read_Json_strs_to_json_null){
-    JsonReader readJson(NULL);
-    rapidjson::Document *document = readJson.strs_to_json();
-    EXPECT_EQ(document, NULL);
+    std::vector<rapidjson::Document*>* test_doc = jsonReader->strs_to_json();
+    rapidjson::Document *otvet = test_doc->at(0);
+    EXPECT_TRUE((*otvet)["hello"] == "world");
+    EXPECT_TRUE((*otvet)["t"] == true);
+    EXPECT_TRUE((*otvet)["f"] == false);
+    EXPECT_TRUE((*otvet)["i"] == 123);
+    EXPECT_TRUE((*otvet)["pi"] == 3.1416);
+    EXPECT_TRUE((*otvet)["a"][0] == 1);
+    EXPECT_TRUE((*otvet)["a"][1] == 2);
+    EXPECT_TRUE((*otvet)["a"][2] == 3);
+    EXPECT_TRUE((*otvet)["a"][3] == 4);
 }
 
 
