@@ -1,0 +1,15 @@
+#include <iostream>
+#include "ArgumentsParser.h"
+
+int main() {
+    std::string base = "https://www.domofond.ru/arenda-kvartiry-moskva-c3584?";//урл откуда парсим
+    std::string get = "Page=";
+    std::string name_db = "overflow.db";
+    auto a = new ArgumentsParser(base, get, 117); // введи кол-во стр.
+    a->URLS_to_str();
+    a->str_to_json("{\"itemsState\":(.*)}}");
+    size_t error = a->json_to_db(name_db);
+    if (error == 0)
+        return 1;
+    return 0;
+}
