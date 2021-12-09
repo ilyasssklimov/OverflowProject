@@ -9,7 +9,7 @@ std::string FlatWrapper::info() {
   int t = flat.get_travel_time();
   ss << f->get_title() << std::endl << std::endl << f->get_description() << std::endl << std::endl <<
     "Цена: " << f->get_price();
-  std::string out = ss.str();
+  std::string out = f->get_title();
   std::cout << out << std::endl;
   return out;
 }
@@ -40,6 +40,7 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
     for (auto flat: res) {
       out.push_back(FlatWrapper(flat));
     }
+    std::cout << out.size() << std::endl;
     return out;
   };
   searchbox = root()->addWidget(std::make_unique<SearchBox<FlatWrapper>>(_get_data));
@@ -63,6 +64,8 @@ int run_server(int argc, char **argv)
      * You could read information from the environment to decide whether
      * the user has permission to start a new application
      */
-    return std::make_unique<OverflowProject>(env);
+    auto app = std::make_unique<OverflowProject>(env);
+    app->setLocale(Wt::WLocale("ru-RU"));
+    return app;
   });
 }

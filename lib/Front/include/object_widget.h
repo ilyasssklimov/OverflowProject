@@ -33,7 +33,8 @@ public:
         //decorationStyle().setBackgroundColor(Wt::WColor(226, 226, 226));
         auto layout = setLayout(std::make_unique<Wt::WVBoxLayout>());
         addStyleClass("row rounded-3 bg-secondary");
-        info_ = layout->addWidget(std::make_unique<Wt::WText>(obj.info()));
+        Wt::WString info = Wt::WString(obj.info());
+        info_ = layout->addWidget(std::make_unique<Wt::WText>(info));
     }
 public:
     Wt::WPushButton  *show_; // кнопка - показать объект
