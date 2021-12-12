@@ -1,7 +1,7 @@
 project("OverflowProject")
 cmake_minimum_required(VERSION 3.21)
 
-add_compile_options(-g)
+find_package(GTest)
 
 add_subdirectory(lib/datalib)
 add_subdirectory(lib/Parser)

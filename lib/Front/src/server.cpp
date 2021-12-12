@@ -18,7 +18,7 @@ std::unique_ptr<Wt::WTemplate> FlatWrapper::info() {
   t->bindString("price_per_area", Wt::WString(std::to_string(f->get_price_per_area())));
   t->bindString("property", Wt::WString(f->get_property()));
   t->bindString("station", Wt::WString(f->get_station()));
-  t->bindString("time", Wt::WString(std::to_string(flat.get_travel_time())));
+  t->bindString("time", Wt::WString(std::to_string(flat.get_travel_time()/60)));
   return t;
 }
 
@@ -32,7 +32,8 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
   require("https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"); // Bootstrap JS
   require("http://maps.google.com/maps/api/js?sensor=false"); // Google Maps
   setTitle(Settings::General::site_title);
-  setBodyClass("bg-primary text-white");
+  setBodyClass("text-white bg-dark");
+  //styleSheet().addRule("body", "background-color: rgb(24, 26, 28);");
   root()->addStyleClass("container vh-100 vw-100");
   auto site_label = root()->addWidget(std::make_unique<Wt::WText>(Settings::General::site_title));
   site_label->setAttributeValue("style", "font-size: 74px;");
@@ -54,6 +55,7 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
 
 int run_server(int argc, char **argv)
 {
+  /*
   std::string base = "https://www.domofond.ru/arenda-kvartiry-moskva-c3584?"; // урл откуда парсим
   std::string get = "Page=";
   std::string name_db = "overflow.db";
@@ -63,6 +65,8 @@ int run_server(int argc, char **argv)
   size_t error = a->json_to_db(name_db);
   if (error == 0)
       return 1;
+  */
+
   /*
    * Your main method may set up some shared resources, but should then
    * start the server application (FastCGI or httpd) that starts listening

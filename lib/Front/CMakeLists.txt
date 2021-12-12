@@ -7,7 +7,7 @@ set(CMAKE_CXX STANDARD 14)
 set(SOURCE_DIR src)
 set(HEADERS_DIR include)
 
-set(TESTS 1)
+set(ALIAS "[Frontend]")
 
 add_compile_options(-Wall -Wextra -pedantic)
 
@@ -32,10 +32,10 @@ target_include_directories(Front PUBLIC ${HEADERS_DIR})
 target_link_libraries(Front FlatSelector ArgumentsParser)
 
 if (CMAKE_BUILD_TYPE STREQUAL Release)
-    message("Использую WebToolkit [Release].")
+    message("${ALIAS} Использую WebToolkit [Release].")
     target_link_libraries(Front wt wthttp)
 elseif(CMAKE_BUILD_TYPE STREQUAL Debug)
-    message("Использую WebToolkit [Debug].")
+    message("${ALIAS} Использую WebToolkit [Debug].")
     target_link_libraries(Front wtd wthttpd)
 endif()
 
@@ -43,12 +43,13 @@ endif()
 #target_include_directories(Front PUBLIC lib/Selector/include)
 
 if (TESTS OR SANITIZERS OR COVERAGE OR VALGRIND)
+    message("${ALIAS} Ищу пакет GTest...")
     find_package(GTest REQUIRED)
     enable_testing()
     set(BUILD_TESTS 1)
 endif()
 
 if(BUILD_TESTS)
-    message("Использую тесты.")
+    message("${ALIAS} Использую тесты.")
     add_subdirectory(tests)
 endif()
