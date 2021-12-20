@@ -4,9 +4,9 @@
 #include <vector>
 #include <string>
 
-class ParseJson{
+class JsonParser{
 public:
-    std::vector<int> parse_json(std::string json);
+    std::vector<int> parse_json(const std::string& json);
 };
 
 #endif

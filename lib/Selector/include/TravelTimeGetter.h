@@ -6,7 +6,7 @@
 #include <curl/curl.h>
 
 
-class GetTravelTime{
+class TravelTimeGetter{
 public:
     std::vector<int> make_request(std::vector<std::string> origins, std::string dest);
 private:

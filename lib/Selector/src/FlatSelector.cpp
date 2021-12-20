@@ -1,5 +1,6 @@
 #include "FlatSelector.h"
-#include "GetTravelTime.h"
+#include "TravelTimeGetter.h"
+#include "SelectorException.h"
 
 #include <memory>
 
@@ -23,7 +24,7 @@ std::vector<std::string> FlatSelector::get_addr_vect(std::vector<Flat> flats){
 std::vector<int> FlatSelector::get_travel_time(std::vector<std::string> origins, std::string dest){
     std::vector<int> result;
     
-	GetTravelTime calc_time = GetTravelTime();
+	TravelTimeGetter calc_time = TravelTimeGetter();
 	result = calc_time.make_request(origins, dest);
 
     return result;
@@ -37,7 +38,8 @@ std::vector<FlatAndTravelTime> FlatSelector::get_by_travel_time(int count, std::
     origins = db->get_random_flats(count);
     
     if(origins.empty()){
-        fprintf(stderr, "FlatSelector::get_by_travel_time - db->get_random_flats empty\n");
+        time_t time_now = time(nullptr);
+		throw SelectorException(__FILE__, __LINE__, ctime(&time_now), "FlatSelector::get_by_travel_time - db->get_random_flats empty\n");
         return {};
     }
 
@@ -45,7 +47,8 @@ std::vector<FlatAndTravelTime> FlatSelector::get_by_travel_time(int count, std::
     std::vector<int> travel_time = get_travel_time(origins_addr, dest);
 
     if(travel_time.empty()){
-        fprintf(stderr, "FlatSelector::get_by_travel_time - travel_time empty\n");
+        time_t time_now = time(nullptr);
+		throw SelectorException(__FILE__, __LINE__, ctime(&time_now), "FlatSelector::get_by_travel_time - travel_time empty\n");
         return {};
     }
 
