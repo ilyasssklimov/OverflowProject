@@ -8,10 +8,10 @@
 
 class TravelTimeGetter{
 public:
-    std::vector<int> make_request(std::vector<std::string> origins, std::string dest);
+    std::vector<int> make_request(const std::vector<std::string>& origins, const std::string& dest);
 private:
-    std::string get_encoded_request(CURL *curl, std::vector<std::string> origins, std::string dest);
-    std::string send_request(std::vector<std::string> origins, std::string dest);
+    std::string get_encoded_request(CURL* curl, const std::vector<std::string>& origins, const std::string& dest);
+    std::string send_request(const std::vector<std::string>& origins, const std::string& dest);
 };
 
 #endif

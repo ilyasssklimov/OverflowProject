@@ -5,9 +5,10 @@
 #include "sqlite_database.h"
 #include "FlatAndTravelTime.h"
 
-class Selector{
+class ISelector{
 public:
-    virtual std::vector<FlatAndTravelTime> get_by_travel_time(int count, std::string dest) = 0;
+    virtual std::vector<FlatAndTravelTime> get_by_travel_time(const int count, const std::string& dest) = 0;
+    virtual ~ISelector() = default;
 };
 
 #endif

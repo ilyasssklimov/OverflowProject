@@ -1,13 +1,12 @@
+#include "SelectorException.h"
+#include "TravelTimeGetter.h"
+#include "JsonParser.h"
+
 #include <curl/curl.h>
 #include <string>
 #include <iostream>
 #include <cassert>
 #include <vector>
-
-#include "SelectorException.h"
-#include "TravelTimeGetter.h"
-#include "JsonParser.h"
-
 
 const std::string API_KEY = "AIzaSyCYs2rbbVWwrEe6LBLcpnLuykpFUSJBUKk";
 
@@ -17,7 +16,7 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* use
 	return size * nmemb;
 }
 
-std::string TravelTimeGetter::get_encoded_request(CURL *curl, std::vector<std::string> origins, std::string dest){
+std::string TravelTimeGetter::get_encoded_request(CURL *curl, const std::vector<std::string>& origins, const std::string& dest){
 
 	std::string enc_dest = curl_easy_escape(curl, dest.c_str(), dest.length());
     std::string enc_request_string =  "?destinations=" + enc_dest;
@@ -37,12 +36,12 @@ std::string TravelTimeGetter::get_encoded_request(CURL *curl, std::vector<std::s
 	return enc_request_string;
 }
 
-std::string TravelTimeGetter::send_request(std::vector<std::string> origins, std::string dest){
+std::string TravelTimeGetter::send_request(const std::vector<std::string>& origins, const std::string& dest){
 	CURLcode res;
 	std::string json;
 	CURL* curl = curl_easy_init();
 
-	std::string enc_request = "https://maps.googleapis.com/maps/api/distancematrix/json" + get_encoded_request(curl, origins, dest);
+	const std::string enc_request = "https://maps.googleapis.com/maps/api/distancematrix/json" + get_encoded_request(curl, origins, dest);
 	curl_easy_setopt(curl, CURLOPT_URL, enc_request.c_str());
 	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &json);
@@ -61,8 +60,8 @@ std::string TravelTimeGetter::send_request(std::vector<std::string> origins, std
 }
 
 
-std::vector<int> TravelTimeGetter::make_request(std::vector<std::string> origins, std::string dest){
-	JsonParser parser = JsonParser();
+std::vector<int> TravelTimeGetter::make_request(const std::vector<std::string>& origins, const std::string& dest){
+	JsonParser parser;
 
 	std::string json = send_request(origins, dest);
 	
