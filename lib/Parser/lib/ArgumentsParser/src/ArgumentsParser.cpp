@@ -72,17 +72,16 @@ size_t ArgumentsParser::json_to_db() {
                             if (elemenst[j]["thumbnailUrls"].IsArray())
                                 if (elemenst[j]["thumbnailUrls"][0]["url"].IsString())
                                     photo = elemenst[j]["thumbnailUrls"][1]["url"].GetString();
-                        FlatParams flatParams = FlatParams(title,
-                                                           price,
-                                                           priceArea,
-                                                           address,
-                                                           description,
-                                                           metro,
-                                                           propertyType,
-                                                           floor,
-                                                           max_floor,
-                                                           photo);
-                        Flat flat = Flat(flatParams);
+                        Flat flat = Flat(title,
+                                         price,
+                                         priceArea,
+                                         address,
+                                         description,
+                                         metro,
+                                         propertyType,
+                                         floor,
+                                         max_floor,
+                                         photo);
                         sqLiteDataBase->add_flat(flat);
                     }
                 }
