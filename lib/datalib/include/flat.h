@@ -4,35 +4,56 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+
+
+using std::string;
 
 
 class Flat
 {
 public:
-    Flat(int price, std::string city, std::string address, int rooms, int square, int floor, std::vector<std::string> photo_urls, std::map<std::string, int> nearest_metro, std::vector<int> flat_likes);
+    explicit Flat(const string &title, const int price, const int price_per_area=0,
+                  const string &address="", const string &description="",
+                  const string &station="", const string &property="", const int floor=0,
+                  const int floor_max=0, const string &photo=""):
+                  title_(title), price_(price), price_per_area_(price_per_area),
+                  address_(address), description_(description), station_(station),
+                  property_(property), floor_(floor), floor_max_(floor_max), photo_(photo) {}
     ~Flat() = default;
-    
-    int get_price();
-    std::string get_city()
-    std::string get_address();
-    int get_rooms();
-    int get_square();
-    int get_floor();
-    std::vector<std::string> get_photo_urls();
-    std::map<std::string, int> get_nearest_metro();
-    std::vector<int> get_likes();
-    
+
+    string get_title() const;
+    int get_price() const;
+    int get_price_per_area() const;
+    string get_address() const;
+    string get_description() const;
+    string get_station() const;
+    string get_property() const;
+    int get_floor() const;
+    int get_floor_max() const;
+    string get_photo() const;
+
+    void set_title(const string &new_title);
+    void set_price(const int new_price);
+    void set_price_per_area(const int new_price);
+    void set_address(const string &new_address);
+    void set_description(const string &new_description);
+    void set_station(const string &new_station);
+    void set_property(const string &new_property);
+    void set_floor(const int new_floor);
+    void set_floor_max(const int new_floor);
+    void set_photo(const string &new_photo);
+
 private:
-    int price;
-    std::string city;
-    std::string address;
-    int rooms;
-    int square;
-    int floor;
-    std::vector<std::string> photo_urls;
-    std::map<std::string, int> nearest_metro;
-    std::vector<int> flat_likes;
+    string title_;
+    int price_;
+    int price_per_area_;
+    string address_;
+    string description_;
+    string station_;
+    std::string property_;
+    int floor_;
+    int floor_max_;
+    string photo_;
 };
 
 
