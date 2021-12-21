@@ -22,8 +22,7 @@ TEST(DATABASE, ADD_FLAT)
 
     std::string title = "title_1";
     int price = 1000;
-    FlatParams flat_params = FlatParams(title, price);
-    Flat flat = Flat(flat_params);
+    Flat flat = Flat(title, price);
 
     EXPECT_TRUE(db.add_flat(flat) == true);
 }
@@ -36,17 +35,14 @@ TEST(DATABASE, ADD_FLATS)
 
     std::string title_1 = "title_1";
     int price_1 = 1000;
-    FlatParams flat_params_1 = FlatParams(title_1, price_1);
-    Flat flat_1 = Flat(flat_params_1);
+    Flat flat_1 = Flat(title_1, price_1);
 
     std::string title_2 = "title_2";
     int price_2 = 500;
-    FlatParams flat_params_2 = FlatParams(title_2, price_2);
-    Flat flat_2 = Flat(flat_params_2);
+    Flat flat_2 = Flat(title_2, price_2);
 
     std::vector<Flat> flats = { flat_1, flat_2 };
     EXPECT_TRUE(db.add_flats(flats) == true);
-
 }
 
 
@@ -59,13 +55,11 @@ TEST(DATABASE, GET_ALL_FLATS)
 
     std::string title_1 = "title_1";
     int price_1 = 1000;
-    FlatParams flat_params_1 = FlatParams(title_1, price_1);
-    Flat flat_1 = Flat(flat_params_1);
+    Flat flat_1 = Flat(title_1, price_1);
 
     std::string title_2 = "title_2";
     int price_2 = 500;
-    FlatParams flat_params_2 = FlatParams(title_2, price_2);
-    Flat flat_2 = Flat(flat_params_2);
+    Flat flat_2 = Flat(title_2, price_2);
 
     std::vector<Flat> flats = { flat_1, flat_2 };
     EXPECT_TRUE(db.add_flats(flats) == true);

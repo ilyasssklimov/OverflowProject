@@ -4,7 +4,6 @@
 
 #include <iostream>
 #include <string>
-#include "flat_params.h"
 
 
 using std::string;
@@ -13,35 +12,48 @@ using std::string;
 class Flat
 {
 public:
-    explicit Flat(FlatParams &flat_params): flat_params(flat_params) {};
+    explicit Flat(const string &title, const int price, const int price_per_area=0,
+                  const string &address="", const string &description="",
+                  const string &station="", const string &property="", const int floor=0,
+                  const int floor_max=0, const string &photo=""):
+                  title_(title), price_(price), price_per_area_(price_per_area),
+                  address_(address), description_(description), station_(station),
+                  property_(property), floor_(floor), floor_max_(floor_max), photo_(photo) {}
     ~Flat() = default;
 
-    [[nodiscard]] FlatParams get_params() const;
+    string get_title() const;
+    int get_price() const;
+    int get_price_per_area() const;
+    string get_address() const;
+    string get_description() const;
+    string get_station() const;
+    string get_property() const;
+    int get_floor() const;
+    int get_floor_max() const;
+    string get_photo() const;
 
-    [[nodiscard]] string get_title() const;
-    [[nodiscard]] int get_price() const;
-    [[nodiscard]] int get_price_per_area() const;
-    [[nodiscard]] string get_address() const;
-    [[nodiscard]] string get_description() const;
-    [[nodiscard]] string get_station() const;
-    [[nodiscard]] string get_property() const;
-    [[nodiscard]] int get_floor() const;
-    [[nodiscard]] int get_floor_max() const;
-    [[nodiscard]] string get_photo() const;
-
-    void set_title(string &new_title);
-    void set_price(int new_price);
-    void set_price_per_area(int new_price);
-    void set_address(string &new_address);
-    void set_description(string &new_description);
-    void set_station(string &new_station);
-    void set_property(string &new_property);
-    void set_floor(int new_floor);
-    void set_floor_max(int new_floor);
-    void set_photo(string &new_photo);
+    void set_title(const string &new_title);
+    void set_price(const int new_price);
+    void set_price_per_area(const int new_price);
+    void set_address(const string &new_address);
+    void set_description(const string &new_description);
+    void set_station(const string &new_station);
+    void set_property(const string &new_property);
+    void set_floor(const int new_floor);
+    void set_floor_max(const int new_floor);
+    void set_photo(const string &new_photo);
 
 private:
-    FlatParams flat_params;
+    string title_;
+    int price_;
+    int price_per_area_;
+    string address_;
+    string description_;
+    string station_;
+    std::string property_;
+    int floor_;
+    int floor_max_;
+    string photo_;
 };
 
 

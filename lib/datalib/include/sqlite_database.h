@@ -7,32 +7,38 @@
 #include <iostream>
 #include <string>
 #include <sqlite3.h>
+#include <memory>
 #include "database.h"
+
+
+class SQLite3 {
+public:
+    SQLite3();
+    ~SQLite3();
+
+    sqlite3 *connection;
+};
 
 
 class SQLiteDataBase: public IDataBase {
 public:
     explicit SQLiteDataBase(const std::string& db_name);
-    SQLiteDataBase(SQLiteDataBase &db) = default;
-    SQLiteDataBase &operator = (const SQLiteDataBase &db) = default;
-    SQLiteDataBase(SQLiteDataBase &&db) = delete;
-    SQLiteDataBase &operator = (const SQLiteDataBase &&db) = delete;
+    SQLiteDataBase(SQLiteDataBase &db);
 
-    ~SQLiteDataBase() override;
-    const sqlite3& get_connection();
+    ~SQLiteDataBase() override = default;
 
     void select_flats();
     void delete_flats();
 
-    bool add_flat(Flat &flat) override;
-    bool add_flats(std::vector<Flat> &flats) override;
+    void add_flat(const Flat &flat) override;
+    void add_flats(const std::vector<Flat> &flats) override;
 
     std::vector<Flat> get_all_flats() override;
     std::vector<Flat> get_random_flats(int num) override;
 
 private:
-    sqlite3 *connection;
-    bool create_tables(char **error_msg);
+    std::unique_ptr<SQLite3> connection;
+    void create_tables();
 };
 
 

@@ -1,17 +1,13 @@
 #include "db_exception.h"
 
 
-BaseError::BaseError(const std::string &filename, const int line, const char *time, const std::string &message) {
-    error = "Error! " + message + "\n" + time + "Filename: " + filename + ", line # " + std::to_string(line);
-}
+ConnectionError::ConnectionError(const std::string &what_arg):
+        std::runtime_error("Incorrect connection to database. Please check your db file: " + what_arg) {}
 
 
-[[nodiscard]] const char* BaseError::what() const noexcept {
-    return error.c_str();
-}
+ParamsError::ParamsError(const std::string &what_arg):
+        std::runtime_error("Incorrect params in params of function. " + what_arg) {}
 
 
-ConnectionError::ConnectionError(const std::string &filename, const int line,
-                                 const char *time, const std::string &message):
-        BaseError(filename, line, time,
-                  "Incorrect connection to database. Please check your db file: " + message) {}
+RequestError::RequestError(const std::string &what_arg):
+        std::runtime_error("Incorrect request to database. " + what_arg) {}

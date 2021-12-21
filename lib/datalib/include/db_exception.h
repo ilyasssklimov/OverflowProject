@@ -3,22 +3,24 @@
 
 
 #include <string>
-#include <exception>
+#include <stdexcept>
 
 
-class BaseError: public std::exception {
+class ConnectionError: public std::runtime_error {
 public:
-    BaseError(const std::string &filename, int line, const char *time, const std::string &message);
-    [[nodiscard]] const char *what() const noexcept final;
-
-protected:
-    std::string error;
+    explicit ConnectionError(const std::string &what_arg);
 };
 
 
-class ConnectionError: public BaseError {
+class ParamsError: public std::runtime_error {
 public:
-    ConnectionError(const std::string &filename, int line, const char *time, const std::string &message);
+    explicit ParamsError(const std::string &what_arg);
+};
+
+
+class RequestError: public std::runtime_error {
+public:
+    explicit RequestError(const std::string &what_arg);
 };
 
 
