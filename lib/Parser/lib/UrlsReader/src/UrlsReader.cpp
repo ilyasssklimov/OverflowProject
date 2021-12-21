@@ -1,34 +1,28 @@
 #include "UrlsReader.h"
 
 UrlsReader::UrlsReader(){
-    URLS = new std::vector<std::string>;
 }
 
 UrlsReader::~UrlsReader() {
-    delete[] URLS;
 }
 
-std::vector<std::string> *UrlsReader::set_urls(std::string &base_url, std::string &get_param_url, size_t pages) {
-    if (&base_url == nullptr || &get_param_url == nullptr) {
-        return nullptr;
-    }
+std::vector<std::string> UrlsReader::set_urls(std::string &base_url, std::string &get_param_url, size_t pages) {
     std::string page;
 
     for (int i = 0; i < pages; i++) { // to do pages
         page = std::to_string(i + 1);
         std::string URL = base_url + get_param_url + page;
-        URLS->push_back(URL);
+        URLS.push_back(URL);
     }
-
     return URLS;
 }
 
-std::vector<std::string> *UrlsReader::parser_urls() {
-    if (URLS->empty())
-        return nullptr;
-    auto *otvet = new std::vector<std::string>;
-    for (int i = 0; i < URLS->size(); i++) {
-        otvet->push_back(parser_page(URLS->at(i)));
+std::vector<std::string> UrlsReader::parser_urls() {
+    if (URLS.empty())
+        return URLS;
+    std::vector<std::string> otvet;
+    for (int i = 0; i < URLS.size(); i++) {
+        otvet.push_back(parser_page(URLS.at(i)));
     }
     return otvet;
 }

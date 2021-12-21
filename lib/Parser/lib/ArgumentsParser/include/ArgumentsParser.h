@@ -8,24 +8,25 @@
 #include "rapidjson/document.h"
 #include "rapidjson/writer.h"
 #include "rapidjson/stringbuffer.h"
+#include "sqlite_database.h"
 
 
 class ArgumentsParser{
 public:
-    ArgumentsParser(std::string&, std::string&, size_t page_size);
+    ArgumentsParser(const std::string &base_url, const std::string &get_param, const size_t page_size, const std::string &name_db);
     ~ArgumentsParser();
-    std::vector<std::string>* URLS_to_str();
-    std::vector<rapidjson::Document*>* str_to_json(std::string find_param);
-    size_t json_to_db(std::string &name_db);
+    std::vector<std::string> URLS_to_str();
+    std::vector<std::shared_ptr<rapidjson::Document>> str_to_json(std::string &find_param);
+    size_t json_to_db();
 
 private:
     size_t page_size;
     std::string base_url;
     std::string get_param;
-    std::vector<std::string>* context;
-    std::vector<rapidjson::Document*>* jsons;
-    UrlsReader *urlsReader;
-    JsonReader *jsonReader;
+    std::string name_db;
+    std::vector<std::string> context;
+    std::vector<std::shared_ptr<rapidjson::Document>> jsons;
+    std::shared_ptr<SQLiteDataBase> sqLiteDataBase;
 };
 
 #endif //PARSER_APARTMENTS_H

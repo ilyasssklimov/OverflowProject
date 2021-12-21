@@ -1,40 +1,35 @@
 #include "ArgumentsParser.h"
 #include "sqlite_database.h"
 
-ArgumentsParser::ArgumentsParser(std::string &base_url, std::string &get_param, size_t page_size) :
+ArgumentsParser::ArgumentsParser(const std::string &base_url, const std::string &get_param, const size_t page_size, const std::string &name_db) :
     base_url(base_url),
     get_param(get_param),
-    page_size(page_size)
+    page_size(page_size),
+    name_db(name_db)
 {
+    sqLiteDataBase = std::make_shared<SQLiteDataBase>(name_db);
 }
 
 ArgumentsParser::~ArgumentsParser() {
-    delete urlsReader;
-    delete jsonReader;
 }
 
-std::vector<std::string>* ArgumentsParser::URLS_to_str() {
-    urlsReader = new UrlsReader();
-    urlsReader->set_urls(base_url, get_param, page_size);
-    std::vector<std::string>* temp = urlsReader->parser_urls();
-    this->context = temp;
-    return this->context;
+std::vector<std::string> ArgumentsParser::URLS_to_str() {
+    UrlsReader urlsReader = UrlsReader();
+    urlsReader.set_urls(base_url, get_param, page_size);
+    std::vector<std::string> temp = urlsReader.parser_urls();
+    context = temp;
+    return temp;
 }
 
-std::vector<rapidjson::Document *>* ArgumentsParser::str_to_json(std::string find_param) {
-    if (context->empty())
-        return nullptr;
-    jsonReader = new JsonReader(context);
-    jsonReader->find_json(find_param);
-    std::vector<rapidjson::Document*>* json = jsonReader->strs_to_json();
-    this->jsons = json;
-    return this->jsons;
+std::vector<std::shared_ptr<rapidjson::Document>> ArgumentsParser::str_to_json(std::string &find_param) {
+    JsonReader jsonReader = JsonReader(context);
+    jsonReader.find_json(find_param);
+    std::vector<std::shared_ptr<rapidjson::Document>> json = jsonReader.strs_to_json();
+    jsons = json;
+    return jsons;
 }
 
-size_t ArgumentsParser::json_to_db(std::string &name_db) {
-    auto sqLiteDataBase = new SQLiteDataBase("overflow.db");
-    if(sqLiteDataBase == NULL)
-        return 0;
+size_t ArgumentsParser::json_to_db() {
     std::string title = "ERROR";
     int price = -1;
     int priceArea = -1;
@@ -45,9 +40,9 @@ size_t ArgumentsParser::json_to_db(std::string &name_db) {
     int floor = -1;
     int max_floor = -1;
     std::string photo = "ERROR";
-    for (int i = 0; i < jsons->size(); i++) {
-        rapidjson::Document *document = (*jsons)[i];
-        if (document->HasMember("itemsState")) {
+    for (int i = 0; i < jsons.size(); i++) {
+        std::shared_ptr<rapidjson::Document> document = (jsons)[i];
+        if ((*document).HasMember("itemsState")) {
             if ((*document)["itemsState"].HasMember("items")) {
                 rapidjson::Value elemenst;
                 elemenst = (*document)["itemsState"]["items"];
