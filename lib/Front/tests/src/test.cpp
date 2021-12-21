@@ -8,8 +8,12 @@ TEST(SEARCHBOX_TEST, OBJ_COUNT) {
   FlatParams params = FlatParams(title, price);
   Flat flat = Flat(params);
   FlatAndTravelTime flat_ = FlatAndTravelTime(&flat, 0);
-  std::function<std::vector<FlatWrapper>(Wt::WString)> get_data = [flat_](Wt::WString input) {
-    return std::vector<FlatWrapper>{FlatWrapper(flat_), FlatWrapper(flat_), FlatWrapper(flat_), FlatWrapper(flat_)};
+  std::function<std::vector<std::unique_ptr<Object>>(Wt::WString)> get_data = [flat_](Wt::WString input) {
+    std::vector<std::unique_ptr<Object>> out = {};
+    for (int i = 0; i < 4; i++) {
+      out.push_back(std::make_unique<FlatWrapper>(flat_));
+    }
+    return out;
   };
   app->searchbox->get_data = get_data;
   app->searchbox->showresults();
@@ -37,15 +41,17 @@ TEST(FLATWRAPPER_TEST, INFO) {
   FlatParams params = FlatParams(title, price);
   Flat flat = Flat(params);
   FlatAndTravelTime flat_ = FlatAndTravelTime(&flat, 0);
-  FlatWrapper flatw = FlatWrapper(flat_);
-  std::function<std::vector<FlatWrapper>(Wt::WString)> get_data = [flatw](Wt::WString input) {
-    return std::vector<FlatWrapper>{flatw};
+  std::function<std::vector<std::unique_ptr<Object>>(Wt::WString)> get_data = [flat_](Wt::WString input) {
+    std::vector<std::unique_ptr<Object>> out = {};
+    for (int i = 0; i < 1; i++) {
+      out.push_back(std::make_unique<FlatWrapper>(flat_));
+    }
+    return out;
   };
   app->searchbox->get_data = get_data;
   app->searchbox->showresults();
-  flatw = app->searchbox->data[0];
   std::stringstream result;
-  flatw.info()->renderTemplate(result);
+  app->searchbox->data[0].get()->info()->renderTemplate(result);
   EXPECT_EQ(result.str(), title+" "+std::to_string(price));
   delete app;
 }

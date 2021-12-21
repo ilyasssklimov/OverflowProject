@@ -23,12 +23,10 @@ public:
     virtual std::unique_ptr<Wt::WTemplate> info() {return std::unique_ptr<Wt::WTemplate>();};
 };
 
-template <typename T>
 class ObjectWidget : public Wt::WContainerWidget
 {
-static_assert(std::is_base_of<Object, T>::value, "Ошибка наследования.");
 public:
-    ObjectWidget(T obj) {
+    ObjectWidget(Object& obj) {
         setContentAlignment(Wt::AlignmentFlag::Center);
         //decorationStyle().setBackgroundColor(Wt::WColor(226, 226, 226));
         auto layout = setLayout(std::make_unique<Wt::WVBoxLayout>());

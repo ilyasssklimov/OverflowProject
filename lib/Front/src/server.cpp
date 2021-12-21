@@ -42,15 +42,15 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
   /*
     Получение данных от FlatSelector.
   */
-  std::function<std::vector<FlatWrapper>(Wt::WString)> _get_data = [](Wt::WString input) {
+  std::function<std::vector<std::unique_ptr<Object>>(Wt::WString)> get_data = [](Wt::WString input) {
     std::vector<FlatAndTravelTime> res = FlatSelector().get_by_travel_time(10, input.toUTF8());
-    std::vector<FlatWrapper> out = {};
+    std::vector<std::unique_ptr<Object>> out = {};
     for (auto flat: res) {
-      out.push_back(FlatWrapper(flat));
+      out.push_back(std::make_unique<FlatWrapper>(flat));
     }
     return out;
   };
-  searchbox = root()->addWidget(std::make_unique<SearchBox<FlatWrapper>>(_get_data));
+  searchbox = root()->addWidget(std::make_unique<SearchBox>(get_data));
 }
 
 int run_server(int argc, char **argv)
