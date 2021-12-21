@@ -3,15 +3,15 @@
 
 #include "Selector.h"
 
-class FlatSelector: public Selector{
+class FlatSelector: public ISelector{
 public: 
-    FlatSelector();
-    ~FlatSelector() { delete db; }
-    std::vector<FlatAndTravelTime> get_by_travel_time(int count, std::string dest) override;
+    FlatSelector(std::unique_ptr<SQLiteDataBase>& data_base_);
+    ~FlatSelector() override {};
+    std::vector<FlatAndTravelTime> get_by_travel_time(const int count, const std::string& dest) override;
 private:
-    std::vector<std::string> get_addr_vect(std::vector<Flat> flats);
-    std::vector<int> get_travel_time(std::vector<std::string> origins, std::string dest);
-    SQLiteDataBase* db;
+    std::vector<std::string> get_addr_vect(const std::vector<Flat>& flats);
+    std::vector<int> get_travel_time(const std::vector<std::string>& origins, const std::string& dest);
+    std::unique_ptr<SQLiteDataBase> db;
 };
 
 #endif

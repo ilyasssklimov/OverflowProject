@@ -5,19 +5,19 @@
 */
 std::unique_ptr<Wt::WTemplate> FlatWrapper::info() {
   std::stringstream ss;
-  Flat *f = flat.get_flat();
+  Flat f = flat.get_flat();
   Wt::WString st = Wt::WString::tr("info");
   std::unique_ptr<Wt::WTemplate> t = std::make_unique<Wt::WTemplate>(st);
-  t->bindString("title", Wt::WString(f->get_title()));
-  t->bindString("address", Wt::WString(f->get_address()));
-  t->bindString("description", Wt::WString(std::regex_replace(f->get_description(), std::regex("\\<br>"), "\n")));
-  t->bindString("floor", Wt::WString(std::to_string(f->get_floor())));
-  t->bindString("floor_max", Wt::WString(std::to_string(f->get_floor_max())));
-  t->bindString("photo", Wt::WString(f->get_photo()));
-  t->bindString("price", Wt::WString(std::to_string(f->get_price())));
-  t->bindString("price_per_area", Wt::WString(std::to_string(f->get_price_per_area())));
-  t->bindString("property", Wt::WString(f->get_property()));
-  t->bindString("station", Wt::WString(f->get_station()));
+  t->bindString("title", Wt::WString(f.get_title()));
+  t->bindString("address", Wt::WString(f.get_address()));
+  t->bindString("description", Wt::WString(std::regex_replace(f.get_description(), std::regex("\\<br>"), "\n")));
+  t->bindString("floor", Wt::WString(std::to_string(f.get_floor())));
+  t->bindString("floor_max", Wt::WString(std::to_string(f.get_floor_max())));
+  t->bindString("photo", Wt::WString(f.get_photo()));
+  t->bindString("price", Wt::WString(std::to_string(f.get_price())));
+  t->bindString("price_per_area", Wt::WString(std::to_string(f.get_price_per_area())));
+  t->bindString("property", Wt::WString(f.get_property()));
+  t->bindString("station", Wt::WString(f.get_station()));
   t->bindString("time", Wt::WString(std::to_string(flat.get_travel_time()/60)));
   return t;
 }
@@ -43,7 +43,9 @@ OverflowProject::OverflowProject(const Wt::WEnvironment& env) : WApplication(env
     Получение данных от FlatSelector.
   */
   std::function<std::vector<std::unique_ptr<Object>>(Wt::WString)> get_data = [](Wt::WString input) {
-    std::vector<FlatAndTravelTime> res = FlatSelector().get_by_travel_time(10, input.toUTF8());
+    std::unique_ptr<SQLiteDataBase> db = std::make_unique<SQLiteDataBase>("overflow.db");
+    FlatSelector selector(db);
+    std::vector<FlatAndTravelTime> res = selector.get_by_travel_time(10, input.toUTF8());
     std::vector<std::unique_ptr<Object>> out = {};
     for (auto flat: res) {
       out.push_back(std::make_unique<FlatWrapper>(flat));

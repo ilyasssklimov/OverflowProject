@@ -1,7 +1,7 @@
 #include "settings.h"
 #include "searchbox.h"
 
-#include "FlatSelector.h" // ссылка на чужие объявления
+#include <FlatSelector.h> // ссылка на чужие объявления
 #include "ArgumentsParser.h"
 
 #include <regex> // для замены <br> на \n в описании квартир

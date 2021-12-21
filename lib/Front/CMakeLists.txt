@@ -29,7 +29,7 @@ endif()
 add_library(Front ${SOURCE_DIR}/server.cpp ${SOURCE_DIR}/settings.cpp)
 target_include_directories(Front PUBLIC ${HEADERS_DIR})
 
-target_link_libraries(Front FlatSelector ArgumentsParser)
+target_link_libraries(Front Selector ArgumentsParser)
 
 message("${ALIAS} Использую WebToolkit.")
 target_link_libraries(Front wt wthttp)
