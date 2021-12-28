@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-18.04
-    container: archlinux:archlinux
+    container: archlinux/archlinux
     steps:
     - name: Arch Linux
       run: |
