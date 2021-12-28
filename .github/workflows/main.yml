@@ -4,10 +4,11 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-21.10
+    runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2.4.0
-    - name: Install dependencies
-      run: |
-          sudo apt-get update
-          sudo apt-get install witty witty-dev witty-doc witty-dbg witty-examples
+    - name: Arch Linux
+      uses: Joshua-Ashton/arch-mingw-github-action@v5
+      with:
+        command: |
+          sudo pacman -Syyu
+          sudo pacman --noconfirm -S gtest wt cmake boost rapidjson
