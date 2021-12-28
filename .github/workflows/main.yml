@@ -6,9 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v1
-    - uses: Joshua-Ashton/arch-mingw-github-action@v5
-    - with:
+    - name: Arch Linux
+      uses: Joshua-Ashton/arch-mingw-github-action@v5
+      with:
         command: |
           sudo pacman -Syyu
           sudo pacman -S gtest wt cmake boost rapidjson
