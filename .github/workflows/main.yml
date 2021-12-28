@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: Joshua-Ashton/arch-mingw-github-action@v5
-    - name: Docker hello-world
-      run: |
-        sudo pacman -Syyu
-        sudo pacman -S gtest wt cmake boost rapidjson
+    - with:
+        command: |
+          sudo pacman -Syyu
+          sudo pacman -S gtest wt cmake boost rapidjson
