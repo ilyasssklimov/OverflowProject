@@ -1,0 +1,15 @@
+name: Run OverflowProject
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    container: archlinux
+    steps:
+    - name: Setup
+      run: |
+          pacman -Syu --noconfirm sudo
+          sudo pacman --noconfirm -S wget wt rapidjson gtest boost cmake gcc
+    - uses: actions/checkout@v2.4.0
+    - name: Build
+      run: |
+          sudo cmake $GITHUB_WORKSPACE/CmakeLists.txt --target main
