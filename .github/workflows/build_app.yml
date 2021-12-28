@@ -8,7 +8,7 @@ jobs:
     - name: Setup
       run: |
           pacman -Syu --noconfirm sudo
-          sudo pacman --noconfirm -S wget wt rapidjson gtest boost cmake gcc make
+          sudo pacman --noconfirm -S wget wt rapidjson gtest boost cmake gcc make git
     - uses: actions/checkout@v2.4.0
     - name: Build
       run: |
@@ -16,3 +16,11 @@ jobs:
           cd $GITHUB_WORKSPACE/build
           sudo cmake ..
           sudo make main
+          cd ..
+          sudo git config --global user.name 'Build Bot'
+          sudo git config --global user.email 'buildbot@github.com'
+          sudo git switch -c build
+          sudo git checkout main -- build
+          sudo git add build
+          sudo git commit -am "Automated build"
+          sudo git push origin build
