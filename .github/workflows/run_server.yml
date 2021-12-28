@@ -10,7 +10,7 @@ jobs:
           pacman -Syu --noconfirm sudo
           sudo pacman --noconfirm -S wget wt curl
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
-          sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/main?raw=true -O main > /dev/null
+          sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/build/build/main?raw=true -O main > /dev/null
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml?raw=true -O info.xml > /dev/null
           sudo chmod +x ./main
           sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
