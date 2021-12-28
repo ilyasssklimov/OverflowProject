@@ -22,6 +22,9 @@ jobs:
       run: |
         echo ${{ steps.ip.outputs.ipv4 }}
         echo ${{ steps.ip.outputs.ipv6 }}
+    - name: Check API access
+      run: |
+        sudo curl https://maps.googleapis.com/maps/api/distancematrix/json?destinations=Бауманская%20ул.&origins=Москва%2C%201-я%20Владимирская%20улица%2C%2010%7CМосква%2C%20Новокузнецкая%20улица%2C%2013с1%7CМосква%2C%20посёлок%20Коммунарка%2C%20улица%20Потаповская%20Роща%2C%2018к1%7CМосква%2C%20улица%20Макаренко%2C%202%7CМосква%2C%20Ольховская%20улица%2C%2045с2%7CМосква%2C%201-й%20Боткинский%20проезд%2C%206%7CМосква%2C%20Береговой%20проезд%2C%205Ак6%7CМосква%2C%20Филипповский%20переулок%2C%208с1%7CМосква%2C%20Мытная%20улица%2C%207с1%7CМосква%2C%20улица%20Багрицкого%2C%2018к2&key=AIzaSyCYs2rbbVWwrEe6LBLcpnLuykpFUSJBUKk
     - name: Run ngrok
       run: |
           sudo ngrok http 9090 &
@@ -30,4 +33,4 @@ jobs:
           sudo curl http://127.0.0.1:4040/api/tunnels
     - name: Run server
       run: |
-          sudo ./main --docroot . --http-address 0.0.0.0 --http-port 9090
+          sudo ./main --docroot . --http-address 127.0.0.1 --http-port 9090
