@@ -23,4 +23,4 @@ jobs:
           sudo cp -rf ~/build build
           sudo git add -f build
           sudo git commit -am "Automated build"
-          sudo git push origin build
+          sudo git push -f origin build
