@@ -10,6 +10,5 @@ jobs:
     - uses: Joshua-Ashton/arch-mingw-github-action@v5
     - name: Docker hello-world
       run: |
-        sudo pacman --noconfirm -Syu docker
-        sudo systemctl start docker
-        docker run --rm hello-world
+        sudo pacman -Syyu
+        sudo pacman -S gtest wt cmake boost rapidjson
