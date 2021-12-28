@@ -11,6 +11,7 @@ jobs:
           sudo pacman --noconfirm -S wget gcc gtest wt cmake boost rapidjson
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
           sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
+          sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
           sudo ngrok http --log=stdout --log-level=debug 9090 &
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/main?raw=true -O main
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml?raw=true -O info.xml
