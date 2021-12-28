@@ -11,14 +11,5 @@ jobs:
       with:
         command: |
           sudo pacman -Syyu
-          sudo pacman --noconfirm -S gtest wt cmake boost rapidjson
-    - name: Ngrok Tunneling
-      uses: vmactions/ngrok-tunnel@v0.0.1
-      with:
-        # tcp or http
-        protocol: http # optional
-        # port to forward to
-        port: 9090
-        command: |
-          ls
-      
+          sudo pacman --noconfirm -S gtest wt cmake boost rapidjson ngrok
+          sudo ngrok http 9090
