@@ -19,7 +19,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           sudo git config --global user.name 'Build Bot'
           sudo git config --global user.email 'buildbot@github.com'
-          sudo git switch -c build
+          sudo git switch --orphan -c build
           sudo cp -rf ~/build build
           sudo git add -f build
           sudo git commit -am "Automated build"
