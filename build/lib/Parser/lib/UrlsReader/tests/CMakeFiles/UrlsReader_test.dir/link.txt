@@ -1,0 +1,1 @@
+/usr/sbin/c++ CMakeFiles/UrlsReader_test.dir/src/UrlsReader_test.cpp.o -o UrlsReader_test  ../libUrlsReader.a /usr/lib/libcurl.so /usr/lib/libgtest.so.1.11.0 -lpthread 

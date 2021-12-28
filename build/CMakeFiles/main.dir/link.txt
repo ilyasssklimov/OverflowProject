@@ -1,0 +1,1 @@
+/usr/sbin/c++ CMakeFiles/main.dir/src/main.cpp.o -o main  lib/Front/libFront.a lib/Selector/libSelector.a /usr/lib/libcurl.so lib/Parser/lib/ArgumentsParser/libArgumentsParser.a lib/datalib/libdatalib.a -lsqlite3 lib/Parser/lib/JsonReader/libJsonReader.a lib/Parser/lib/UrlsReader/libUrlsReader.a /usr/lib/libcurl.so -lwt -lwthttp 

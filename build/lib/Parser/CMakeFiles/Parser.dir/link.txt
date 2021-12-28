@@ -1,0 +1,1 @@
+/usr/sbin/c++ CMakeFiles/Parser.dir/src/main.cpp.o -o Parser  lib/ArgumentsParser/libArgumentsParser.a lib/JsonReader/libJsonReader.a lib/UrlsReader/libUrlsReader.a /usr/lib/libcurl.so ../datalib/libdatalib.a -lsqlite3 

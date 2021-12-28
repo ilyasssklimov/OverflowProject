@@ -1,0 +1,2 @@
+/usr/sbin/ar qc libArgumentsParser.a CMakeFiles/ArgumentsParser.dir/src/ArgumentsParser.cpp.o
+/usr/sbin/ranlib libArgumentsParser.a

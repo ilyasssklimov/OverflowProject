@@ -1,0 +1,2 @@
+/usr/sbin/ar qc libUrlsReader.a CMakeFiles/UrlsReader.dir/src/UrlsReader.cpp.o
+/usr/sbin/ranlib libUrlsReader.a

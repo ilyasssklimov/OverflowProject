@@ -1,0 +1,2 @@
+/usr/sbin/ar qc libdatalib.a CMakeFiles/datalib.dir/src/sqlite_database.cpp.o CMakeFiles/datalib.dir/src/db_exception.cpp.o CMakeFiles/datalib.dir/src/flat_params.cpp.o CMakeFiles/datalib.dir/src/flat.cpp.o
+/usr/sbin/ranlib libdatalib.a

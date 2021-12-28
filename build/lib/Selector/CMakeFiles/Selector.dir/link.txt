@@ -1,0 +1,2 @@
+/usr/sbin/ar qc libSelector.a CMakeFiles/Selector.dir/src/FlatSelector.cpp.o CMakeFiles/Selector.dir/src/JsonParser.cpp.o CMakeFiles/Selector.dir/src/TravelTimeGetter.cpp.o
+/usr/sbin/ranlib libSelector.a
