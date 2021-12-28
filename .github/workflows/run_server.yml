@@ -15,9 +15,13 @@ jobs:
           sudo chmod +x ./main
           sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
           sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
-    - name: Server external IP
+    - name: Public IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+    - name: Print Public IP
       run: |
-          sudo curl ipinfo.io/ip
+        echo ${{ steps.ip.outputs.ipv4 }}
+        echo ${{ steps.ip.outputs.ipv6 }}
     - name: Run ngrok
       run: |
           sudo ngrok http 9090 &
