@@ -12,15 +12,15 @@ jobs:
     - uses: actions/checkout@v2.4.0
     - name: Build
       run: |
-          sudo mkdir $GITHUB_WORKSPACE/build
-          cd $GITHUB_WORKSPACE/build
-          sudo cmake ..
+          sudo mkdir ~/build
+          cd ~/build
+          sudo cmake $GITHUB_WORKSPACE
           sudo make main
-          cd ..
+          cd $GITHUB_WORKSPACE
           sudo git config --global user.name 'Build Bot'
           sudo git config --global user.email 'buildbot@github.com'
           sudo git switch -c build
-          sudo git checkout main -- build
+          sudo cp -rf ~/build build
           sudo git add build
           sudo git commit -am "Automated build"
           sudo git push origin build
