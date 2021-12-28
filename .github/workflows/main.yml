@@ -9,7 +9,7 @@ jobs:
     - name: Arch Linux
       run: |
           sudo docker pull archlinux/archlinux
-          sudo docker run archlinux
+          sudo docker exec -it archlinux bash
           sudo pacman -Syyu
           sudo pacman --noconfirm -S gtest wt cmake boost rapidjson ngrok
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
