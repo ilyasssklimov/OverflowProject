@@ -8,7 +8,7 @@ jobs:
     - name: Setup
       run: |
           pacman -Syu --noconfirm sudo
-          sudo pacman --noconfirm -S wget wt rapidjson gtest boost cmake gcc
+          sudo pacman --noconfirm -S wget wt rapidjson gtest boost cmake gcc make
     - uses: actions/checkout@v2.4.0
     - name: Build
       run: |
