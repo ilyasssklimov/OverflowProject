@@ -15,10 +15,15 @@ jobs:
           sudo chmod +x ./main
           sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
           sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
-    - name: Server IP
+    - name: Server external IP
       run: |
           sudo curl ipinfo.io/ip
+    - name: Run ngrok
+      run: |
+          sudo ngrok http 9090 &
+    - name: Ngrok external URL
+      run: |
+          sudo curl http://127.0.0.1:4040/api/tunnels
     - name: Run server
       run: |
-          sudo ngrok http --log=stdout --log-level=debug 9090 &
           sudo ./main --docroot . --http-address 0.0.0.0 --http-port 9090
