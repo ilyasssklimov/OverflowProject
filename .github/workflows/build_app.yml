@@ -1,4 +1,4 @@
-name: Run OverflowProject
+name: Build OverflowProject
 on: workflow_dispatch
 jobs:
   build:
