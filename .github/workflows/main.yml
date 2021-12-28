@@ -12,7 +12,7 @@ jobs:
           pacman -Syu --noconfirm sudo
           sudo pacman --noconfirm -S wget gcc gtest wt cmake boost rapidjson
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
-          sudo tar xvzf ~/Downloads/ngrok-stable-linux-amd64.tgz -C /usr/local/bin
+          sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
           sudo ngrok http 9090
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/main
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml
