@@ -12,6 +12,7 @@ jobs:
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/build/build/main?raw=true -O main > /dev/null
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml?raw=true -O info.xml > /dev/null
+          sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/overflow.db?raw=true -O overflow.db
           sudo chmod +x ./main
           sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
           sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
