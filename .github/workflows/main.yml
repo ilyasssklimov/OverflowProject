@@ -5,12 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-18.04
+    container: archlinux:archlinux
     steps:
     - name: Arch Linux
-      shell: 'script --return --quiet --command "bash {0}"'
       run: |
-          sudo docker pull archlinux/archlinux
-          sudo docker run -it --entrypoint /bin/bash archlinux/archlinux
           sudo pacman -Syyu
           sudo pacman --noconfirm -S gtest wt cmake boost rapidjson ngrok
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
