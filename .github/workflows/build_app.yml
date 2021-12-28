@@ -13,6 +13,6 @@ jobs:
     - name: Build
       run: |
           sudo mkdir $GITHUB_WORKSPACE/build
-          sudo cd $GITHUB_WORKSPACE/build
+          cd $GITHUB_WORKSPACE/build
           sudo cmake .. --build .
           sudo make main
