@@ -9,8 +9,8 @@ jobs:
     steps:
     - name: Arch Linux
       run: |
-          sudo pacman -Syyu
-          sudo pacman --noconfirm -S gtest wt cmake boost rapidjson ngrok
+          pacman -Syu --noconfirm sudo
+          sudo pacman --noconfirm -S gcc gtest wt cmake boost rapidjson ngrok
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
           sudo tar xvzf ~/Downloads/ngrok-stable-linux-amd64.tgz -C /usr/local/bin
           sudo ngrok http 9090
