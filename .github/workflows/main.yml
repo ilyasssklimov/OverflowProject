@@ -8,7 +8,7 @@ jobs:
     - name: Setup
       run: |
           pacman -Syu --noconfirm sudo
-          sudo pacman --noconfirm -S wget gcc gtest wt cmake boost rapidjson
+          sudo pacman --noconfirm -S wget wt
           sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/main?raw=true -O main > /dev/null
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml?raw=true -O info.xml > /dev/null
@@ -17,5 +17,5 @@ jobs:
           sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
     - name: Run server
       run: |
-          sudo ngrok http --log=stdout --log-level=debug 9090
+          sudo ngrok http --log=stdout --log-level=debug 9090 &
           sudo ./main --docroot . --http-address 0.0.0.0 --http-port 9090
