@@ -1,20 +1,21 @@
-name: CI
+name: Run OverflowProject
 on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-18.04
     container: archlinux
     steps:
-    - name: Arch Linux
+    - name: Setup
       run: |
-          pacman -Syu --noconfirm sudo > /dev/null
-          sudo pacman --noconfirm -S wget gcc gtest wt cmake boost rapidjson > /dev/null
-          sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz > /dev/null
-          sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin > /dev/null
-          sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw > /dev/null
-          sudo ngrok http --log=stdout --log-level=debug 9090 > log 2> err &
-          tail -f log | grep 'ngrok.io' &
+          pacman -Syu --noconfirm sudo
+          sudo pacman --noconfirm -S wget gcc gtest wt cmake boost rapidjson
+          sudo wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.tgz
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/main?raw=true -O main > /dev/null
           sudo wget https://github.com/ilyasssklimov/OverflowProject/blob/main/info.xml?raw=true -O info.xml > /dev/null
           sudo chmod +x ./main
+          sudo tar xvzf ngrok-stable-linux-amd64.tgz -C /usr/local/bin
+          sudo ngrok authtoken bVGXV29rGqZaA2dd79tL_MR5BzrT33v1MTkgeMKMw
+    - name: Run server
+      run: |
+          sudo ngrok http --log=stdout --log-level=debug 9090
           sudo ./main --docroot . --http-address 0.0.0.0 --http-port 9090
